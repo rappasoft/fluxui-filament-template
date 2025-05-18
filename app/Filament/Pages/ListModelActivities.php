@@ -6,5 +6,5 @@ use pxlrbt\FilamentActivityLog\Pages\ListActivities;
 
 abstract class ListModelActivities extends ListActivities
 {
-    protected static string $view = 'admin.livewire.history';
+    protected static string $view = 'livewire.partials.history';
 }

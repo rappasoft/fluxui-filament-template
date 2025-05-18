@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
@@ -18,6 +19,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasApiTokens,
         HasFactory,
         HasRoles,
+        LogsActivity,
         Notifiable,
         SoftDeletes,
         UserMethods,
