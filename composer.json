@@ -1,0 +1,135 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "rappasoft/fluxui-filament-template",
+    "type": "project",
+    "description": "FluxUI Filament 3 Template",
+    "homepage": "https://github.com/rappasoft/fluxui-filament-template",
+    "authors": [
+        {
+            "name": "Anthony Rappa",
+            "email": "anthony@rappasoft.com",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "andreiio/blade-remix-icon": "^3.1",
+        "filament/filament": "^3.0-stable",
+        "filament/spatie-laravel-settings-plugin": "^3.0",
+        "flowframe/laravel-trend": "*",
+        "guzzlehttp/guzzle": "^7.2",
+        "jenssegers/agent": "^2.6",
+        "larabug/larabug": "dev-master",
+        "laravel/framework": "^12.0",
+        "laravel/horizon": "^5.22",
+        "laravel/pulse": "^1.0@beta",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.10.1",
+        "livewire/flux": "^2.1.1",
+        "livewire/volt": "^1.7.0",
+        "mvenghaus/filament-plugin-schedule-monitor": "^3.0",
+        "opcodesio/log-viewer": "^3.1",
+        "pxlrbt/filament-activity-log": "^1.1",
+        "rappasoft/laravel-timezone": "dev-master",
+        "rickdbcn/filament-email": "^1.4",
+        "shuvroroy/filament-spatie-laravel-backup": "^2.0",
+        "shuvroroy/filament-spatie-laravel-health": "^2.0",
+        "spatie/cpu-load-health-check": "^1.0",
+        "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-health": "^1.23",
+        "spatie/laravel-permission": "^6.0",
+        "spatie/laravel-schedule-monitor": "^3.8",
+        "spatie/laravel-settings": "^3.2",
+        "spatie/security-advisories-health-check": "^1.0",
+        "stechstudio/filament-impersonate": "^3.5",
+        "tapp/filament-timezone-field": "^3.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.2.2",
+        "laravel/pint": "^1.18",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^11.5.3",
+        "barryvdh/laravel-debugbar": "^3.9",
+        "brianium/paratest": "^7.2",
+        "spatie/laravel-ignition": "^2.0",
+        "wire-elements/wire-spy": "^0.0.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "pint": "vendor/bin/pint",
+        "format": "vendor/bin/pint",
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ],
+        "clear-all": [
+            "@php artisan clear-compiled",
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan config:clear",
+            "@php artisan filament:clear-cached-components",
+            "composer dumpautoload -o"
+        ],
+        "cache-all": [
+            "@php artisan optimize",
+            "@php artisan icons:cache",
+            "@php artisan filament:cache-components"
+        ],
+        "reset": [
+            "composer clear-all",
+            "composer cache-all"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
