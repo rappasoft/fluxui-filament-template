@@ -5,7 +5,8 @@
 **Admin:** admin@admin.com  
 **Password:** password
 
-![Update](https://imgur.com/Q6sIt7o.png)
+![Frontend](https://imgur.com/rf0jBEN.png)
+![Backend](https://imgur.com/BJGFH7V.png)
 
 ## Installation:
 
